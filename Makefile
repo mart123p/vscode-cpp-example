@@ -5,16 +5,16 @@ CC_FLAGS = -w
 # File names
 EXEC = program
 SOURCES = $(wildcard *.cpp)
-OBJECTS = $(SOURCES:.cpp=.o)
+OBJECTS = $(SOURCES:%.cpp=out/%.o)
  
 # Main target
 $(EXEC): $(OBJECTS)
-	$(CC) out/$(OBJECTS) -o out/$(EXEC)
+	$(CC) $(OBJECTS) -o out/$(EXEC)
  
 # To obtain object files
-%.o: %.cpp
+out/%.o: %.cpp
 	mkdir out 2> NUL | exit 0
-	$(CC) -c $(CC_FLAGS) $< -o out/$@
+	$(CC) -c $(CC_FLAGS) $< -o $@
  
 # To remove generated files
 clean:
